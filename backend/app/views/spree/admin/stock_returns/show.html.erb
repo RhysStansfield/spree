@@ -35,15 +35,18 @@
   <tbody>
     <% @stock_return.refunds.each do |refund| %>
       <% variant = refund.variant %>
-      <td class="variant">
-      <%= link_to '' do %>
-        <%= small_image(variant) %>
-          <span class='item_details'><%= refund.quantity %> x <%= variant.product.name %><br><%= "(" + variant_options(variant) + ")" unless variant.option_values.empty? %><br></span>
-          <%= Spree.t(:sku) %>: <%= variant.sku %>
-      <% end %>
-      </td>
-      <td class="price"><%= refund.items.first.display_price %></td>
-      <td class="price"><%= refund.display_total_price %></td>
+      <tr>
+        <td class="variant">
+        <%= link_to '' do %>
+          <%= small_image(variant) %>
+            <span class='item_details'><%= refund.quantity %> x <%= variant.product.name %><br><%= "(" + variant_options(variant) + ")" unless variant.option_values.empty? %><br></span>
+            <%= Spree.t(:sku) %>: <%= variant.sku %>
+        <% end %>
+        </td>
+        <td class="price"><%= refund.items.first.display_price %></td>
+        <td class="price"><%= refund.display_total_price %></td>
+      </tr>
+      <%= render :partial => 'refund_item', :collection => refund.items %>
     <% end %>
   </tbody>
 </table>

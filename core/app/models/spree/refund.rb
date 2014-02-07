@@ -11,6 +11,11 @@ module Spree
       Spree::Money.new(total_price, :currency => items.first.currency)
     end
 
+    def add_quantity(amount)
+      amount.times
+      increment!(:quantity, amount)
+    end
+
     private
 
     def create_items

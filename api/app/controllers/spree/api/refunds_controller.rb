@@ -5,8 +5,12 @@ module Spree
 
       def create
         authorize! :create, Refund
-        @refund = @stock_return.refunds.build(refund_params)
-        @refund.save
+        if @refund = @stock_return.refunds.find_by(variant_id: params[:variant_id])
+          @refund.add_quantity(params[:quantity])
+        else
+          @refund = @stock_return.refunds.build(refund_params)
+          @refund.save
+        end
         render "spree/api/refunds/show"
       end
 

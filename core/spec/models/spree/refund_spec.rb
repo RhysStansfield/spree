@@ -32,4 +32,11 @@ describe Spree::Refund do
     expect(refund.total_price).to eq(order.find_line_item_by_variant(variant).price)
   end
 
+  it 'increase the quantity' do
+    refund = stock_return.refunds.create(:variant_id => variant.id, :quantity => 1)
+    refund.add_quantity(2)
+    expect(refund.quantity).to eq(3)
+    assert_refund_items(refund, 3, variant, order.currency)
+  end
+
 end

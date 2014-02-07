@@ -1,7 +1,6 @@
 module Spree
   module Admin
     class StockReturnsController < Spree::Admin::BaseController
-
       before_filter :load_order
 
       def index
@@ -28,7 +27,6 @@ module Spree
       def load_order
         @order = Spree::Order.find_by(number: params[:order_id])
       end
-
     end
   end
 end

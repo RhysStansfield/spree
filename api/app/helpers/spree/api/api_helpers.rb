@@ -30,7 +30,8 @@ module Spree
         :stock_movement_attributes,
         :stock_item_attributes,
         :stock_return_attributes,
-        :refund_attributes
+        :refund_attributes,
+        :refund_item_attributes
       ]
 
       mattr_reader *ATTRIBUTES
@@ -153,6 +154,10 @@ module Spree
       ]
 
       @@refund_attributes = [
+        :id
+      ]
+
+      @@refund_item_attributes = [
         :id
       ]
     end

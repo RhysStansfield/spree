@@ -30,5 +30,19 @@ describe Spree::Api::RefundsController do
         }
       response.should be_success
     end
+
+    it "adds to a refund if one already exists for a variant" do
+      variant = order.variants.first
+      refund = create(:refund, :variant => variant, :stock_return => stock_return)
+      api_post :create,
+        order_id: order.number,
+        stock_return_id: stock_return.id,
+        refund: { 
+          variant_id: order.variants.first.id,
+          quantity: 2
+        }
+      response.should be_success
+      expect(json_response['items'].count).to eq(3)
+    end
   end
 end
