@@ -13,7 +13,7 @@ module Spree
     end
 
     def add_quantity(amount)
-      increment!(:quantity, amount)
+      increment!(:quantity, amount.to_i)
       create_items(amount)
       set_total_price
       save
