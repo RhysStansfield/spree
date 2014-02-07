@@ -33,7 +33,11 @@ describe Spree::Api::RefundsController do
 
     it "adds to a refund if one already exists for a variant" do
       variant = order.variants.first
-      refund = create(:refund, :variant => variant, :stock_return => stock_return)
+      refund = create(:refund, 
+        :variant => variant,
+        :stock_return => stock_return,
+        :quantity => 1)
+      
       api_post :create,
         order_id: order.number,
         stock_return_id: stock_return.id,
