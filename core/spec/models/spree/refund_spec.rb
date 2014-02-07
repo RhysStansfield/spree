@@ -37,6 +37,8 @@ describe Spree::Refund do
     refund.add_quantity(2)
     expect(refund.quantity).to eq(3)
     assert_refund_items(refund, 3, variant, order.currency)
-  end
 
+    line_item_price = order.find_line_item_by_variant(variant).price
+    expect(refund.total_price).to eq(line_item_price * 3)
+  end
 end
