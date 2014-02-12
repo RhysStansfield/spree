@@ -61,6 +61,7 @@ Spree::Core::Engine.add_routes do
 
       resources :stock_returns do
         resources :refunds
+        resources :exchanges
       end
     end
 
