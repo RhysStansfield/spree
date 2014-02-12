@@ -14,3 +14,15 @@ $(document).ready ->
     ).done (response) ->
       window.location.reload();
     false
+
+  $('#new_exchange form').submit ->
+    form = $(this)
+    $.post(form.data('url'),
+      {
+        exchange: {
+          variant_id: form.find('#variant_id').val()
+        }
+      } 
+    ).done (response) ->
+      window.location.reload();
+    false

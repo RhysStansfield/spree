@@ -24,6 +24,20 @@
   </fieldset>
 </div>
 
+<div id='new_exchange'>
+  <fieldset class="no-border-bottom">
+    <legend align="center"><%= Spree.t(:exchanges) %></legend>
+    <div class="field twelve columns alpha">
+      <%= form_tag '', :'data-url' => spree.api_order_stock_return_exchanges_path(@order, @stock_return) do %>
+        <p class='field'>
+          <%= select_tag 'variant_id', options_from_collection_for_select(@order.variants, :id, :sku) %>
+          <%= submit_tag 'Add' %>
+        </p>
+      <% end %>
+    </div>
+  </fieldset>
+</div>
+
 <table class='index' id='listing_refunds'>
   <thead>
     <th><%= Spree.t(:item) %></th>
