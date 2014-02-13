@@ -6,8 +6,7 @@ module Spree
       def create
         authorize! :create, Exchange
         @exchange = @stock_return.exchanges.create(exchange_params)
-        binding.pry
-        render "spree/api/refunds/show"
+        render "spree/api/exchanges/show"
       end
 
       private
